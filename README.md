@@ -4,6 +4,8 @@ A dedicated Chrome instance for AI agent testing — persistent profile, remote 
 
 ---
 
+![image](Screenshot.png)
+
 ## Repos in this series
 
 | Repo | What it is |

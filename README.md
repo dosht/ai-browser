@@ -79,17 +79,15 @@ open -n -a "Google Chrome" --args --remote-debugging-port=9224
 
 …without a different `--user-data-dir`, macOS hands the request to the already-running Chrome process, which ignores the extra flags. AI Browser always passes `--user-data-dir="$HOME/.ai-browser/chrome-profile"`, which forces a genuinely separate process.
 
-### The shell command permission warning in Claude Code
+### The shell command permission warning
 
-If you use AI Browser with an agent running inside Claude Code, you may see a permission prompt every time the agent runs a shell command — even something as simple as `curl http://127.0.0.1:9224/json/version`.
+If you use AI Browser for the first time, you may see a permission prompt in Mac OS that the app will run a shell command.
 
-This happens because of a known issue with how Claude Code sub-agents inherit MCP server configuration ([GitHub discussion #25200](https://github.com/anthropics/claude-code/discussions/25200)): `mcpServers` defined in the top-level settings are not passed into sub-agents. The sub-agent therefore cannot use the chrome-devtools MCP tool directly and falls back to shell commands, which Claude Code flags for approval.
-
-Until that is resolved upstream the workaround is to approve the commands once per session (or configure `allowedTools` for your agent). The agent itself works correctly either way.
+This happens because of a known issue with how I tried to isoloate the AI Browser from the normal Chrome App.
 
 ### Know a better way?
 
-If you have a cleaner approach — a way to pass MCP config into sub-agents, a smarter bring-to-front script, or anything else — PRs are very welcome.
+If you have a cleaner approach to launch the app, PRs are very welcome.
 
 ---
 
